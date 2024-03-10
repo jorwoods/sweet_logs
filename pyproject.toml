@@ -1,0 +1,83 @@
+[project]
+name = "sweet_logs"
+authors = [
+    {name="Jordan Woods", email="jorwoods@example.com"}
+]
+version = "0.1.0"
+license = {text = "GNU General Public License v3"}
+
+dynamic = [
+    "readme"
+]
+description = "A collection of logging formatters, filters, and functions"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+
+]
+
+dependencies = [
+    "typing_extensions; python_version<'3.12'",
+]
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst"]}
+
+[tool.setuptools.package-data]
+sweet_logs = [
+    "py.typed"
+]
+
+[tool.black]
+line-length = 120
+target-version = ["py38"]
+extend-exclude = """
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+(
+)
+"""
+
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = false
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = false
+ignore-nested-functions = false
+ignore-nested-classes = true
+ignore-setters = false
+fail-under = 95
+exclude = ["setup.py", "docs", "build"]
+ignore-regex = ["^get$", "^mock_.*", ".*BaseClass.*"]
+# possible values: 0 (minimal output), 1 (-v), 2 (-vv)
+verbose = 0
+quiet = false
+whitelist-regex = []
+color = true
+omit-covered-files = false
+generate-badge = "."
+badge-format = "svg"
