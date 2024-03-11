@@ -6,7 +6,7 @@ import datetime as dt
 import logging
 import json
 import sys
-from typing import Optional
+from typing import Dict, Optional
 
 minor = sys.version_info.minor
 
@@ -46,7 +46,7 @@ class JSONFormatter(logging.Formatter):
     Format log records as JSON
     """
 
-    def __init__(self, fmt_keys: Optional[dict[str, str]] = None, *args, **kwargs):
+    def __init__(self, fmt_keys: Optional[Dict[str, str]] = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fmt_keys = fmt_keys if fmt_keys is not None else {}
 
