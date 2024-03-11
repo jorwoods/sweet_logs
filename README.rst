@@ -6,9 +6,6 @@ Sweet Logs
 .. image:: https://img.shields.io/pypi/v/sweet_logs.svg
         :target: https://pypi.python.org/pypi/sweet_logs
 
-.. image:: https://img.shields.io/travis/jorwoods/sweet_logs.svg
-        :target: https://travis-ci.com/jorwoods/sweet_logs
-
 .. image:: https://readthedocs.org/projects/sweet-logs/badge/?version=latest
         :target: https://sweet-logs.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
