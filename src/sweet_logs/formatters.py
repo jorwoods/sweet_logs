@@ -10,11 +10,6 @@ from typing import Optional
 
 minor = sys.version_info.minor
 
-if minor < 12:
-    from typing_extensions import overload
-else:
-    from typing import overload
-
 LOG_RECORD_BUILTIN_ATTRS = {
     "args",
     "asctime",
@@ -42,6 +37,10 @@ LOG_RECORD_BUILTIN_ATTRS = {
 }
 
 
+def _date_from_timestamp(timestamp: float, timezone: dt.timezone = dt.timezone.utc) -> str:
+    return dt.datetime.fromtimestamp(timestamp, tz=timezone).isoformat()
+
+
 class JSONFormatter(logging.Formatter):
     """
     Format log records as JSON
@@ -51,7 +50,6 @@ class JSONFormatter(logging.Formatter):
         super().__init__(*args, **kwargs)
         self.fmt_keys = fmt_keys if fmt_keys is not None else {}
 
-    @overload
     def format(self, record: logging.LogRecord) -> str:
         """Emit a formatted log record as a string"""
         message = self._prepare_log_dict(record)
@@ -61,7 +59,7 @@ class JSONFormatter(logging.Formatter):
         """Prepare log record as JSON"""
         always_fields = {
             "message": record.getMessage(),
-            "timestamp": dt.datetime.fromtimestamp(record.created, tz=dt.timezone.utc).isoformat(),
+            "timestamp": _date_from_timestamp(record.created),
         }
         if record.exc_info is not None:
             always_fields["exc_info"] = self.formatException(record.exc_info)
@@ -78,3 +76,5 @@ class JSONFormatter(logging.Formatter):
         for key, val in record.__dict__.items():
             if key not in LOG_RECORD_BUILTIN_ATTRS:
                 message[key] = val
+
+        return message
