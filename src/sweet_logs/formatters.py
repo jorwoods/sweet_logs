@@ -43,7 +43,21 @@ def _date_from_timestamp(timestamp: float, timezone: dt.timezone = dt.timezone.u
 
 class JSONFormatter(logging.Formatter):
     """
-    Format log records as JSON
+    Format log records as JSON. timestamp, message, and level are always
+    included in the output. Other attributes may be included.
+    See https://docs.python.org/3/library/logging.html#logrecord-attributes for
+    what attributes are available in a log record.
+
+    Parameters
+    ----------
+    fmt_keys : Dict[str, str], optional
+        A dictionary that maps JSON keys to log record attributes. The keys in
+        fmt_keys are the keys output in the JSON. The values are the log record
+        attributes.
+        The following keys/values are always considered included:
+        - "level": "levelname"
+        - "timestamp": "asctime"
+        - "message": "message"
     """
 
     def __init__(self, fmt_keys: Optional[Dict[str, str]] = None, *args, **kwargs):
@@ -58,6 +72,7 @@ class JSONFormatter(logging.Formatter):
     def _prepare_log_dict(self, record: logging.LogRecord):
         """Prepare log record as JSON"""
         always_fields = {
+            "level": record.levelname,
             "message": record.getMessage(),
             "timestamp": _date_from_timestamp(record.created),
         }
