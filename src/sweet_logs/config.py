@@ -1,60 +1,6 @@
-import sys
-from typing import Dict, List, Literal, TypedDict
+from typing import Any, Dict
 
-if sys.version_info.minor < 12:
-    from typing_extensions import NotRequired
-else:
-    from typing import NotRequired
-
-
-LogFormattersConfig = TypedDict(
-    "LogFormattersConfig",
-    {
-        "format": NotRequired[str],
-        "datefmt": NotRequired[str],
-        "style": NotRequired[str],
-        "()": NotRequired[str],
-    },
-)
-
-
-log_levels = Literal["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"]
-
-
-class LogLoggers(TypedDict):
-    level: NotRequired[log_levels]
-    filters: NotRequired[List[str]]
-    propagate: NotRequired[bool]
-    handlers: NotRequired[List[str]]
-
-
-LogHandlers = TypedDict(
-    "LogHandlers",
-    {
-        "class": str,
-        "level": NotRequired[log_levels],
-        "formatter": NotRequired[str],
-        "filters": NotRequired[List[str]],
-    },
-)
-
-
-class LogConfig(TypedDict):
-    """
-    A dictionary that contains configuration for the logger.
-    """
-
-    version: Literal[1]
-    formatters: NotRequired[Dict[str, LogFormattersConfig]]
-    filters: NotRequired[Dict[str, dict]]
-    handlers: NotRequired[Dict[str, LogHandlers]]
-    root: NotRequired[LogLoggers]
-    incremental: NotRequired[bool]
-    disable_existing_loggers: NotRequired[bool]
-    loggers: NotRequired[Dict[str, LogLoggers]]
-
-
-base_config: LogConfig = {
+base_config: Dict[str, Any] = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
