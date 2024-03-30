@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Jordan Woods <jorwoods@example.com>
+* Jordan Woods <13803242+jorwoods@users.noreply.github.com>
 
 Contributors
 ------------

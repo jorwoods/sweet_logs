@@ -32,20 +32,13 @@ You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/jorwoods/sweet_logs
-
-Or download the `tarball`_:
-
-.. code-block:: console
-
-    $ curl -OJL https://github.com/jorwoods/sweet_logs/tarball/master
+    git clone git://github.com/jorwoods/sweet_logs
 
 Once you have a copy of the source, you can install it with:
 
 .. code-block:: console
 
-    $ python setup.py install
+    pip install -e .
 
 
 .. _Github repo: https://github.com/jorwoods/sweet_logs
-.. _tarball: https://github.com/jorwoods/sweet_logs/tarball/master
