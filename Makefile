@@ -2,11 +2,12 @@
 .DEFAULT_GOAL := help
 
 define BROWSER_PYSCRIPT
-import os, webbrowser, sys
+import webbrowser, sys
+from pathlib import Path
 
 from urllib.request import pathname2url
 
-webbrowser.open("file://" + pathname2url(os.path.abspath(sys.argv[1])))
+webbrowser.open("file://" + pathname2url(Path(sys.argv[1].absolute())).as_posix())
 endef
 export BROWSER_PYSCRIPT
 
@@ -17,7 +18,7 @@ for line in sys.stdin:
 	match = re.match(r'^([a-zA-Z_-]+):.*?## (.*)$$', line)
 	if match:
 		target, help = match.groups()
-		print("%-20s %s" % (target, help))
+        print(f"{target:20s} {help}")
 endef
 export PRINT_HELP_PYSCRIPT
 
@@ -46,6 +47,8 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
+	rm -fr .mypy_cache
+	rm -fr .ruff_cache
 
 lint: ## check style
 	ruff check src tests --fix
@@ -80,9 +83,8 @@ release: dist ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	python -m build .
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	pip install -e .
