@@ -26,6 +26,7 @@ requires-python = ">=3.8"
 [project.optional-dependencies]
 dev = [
     "pytest",
+    "mypy==1.10.0",
 ]
 
 [build-system]
@@ -42,6 +43,11 @@ readme = {file = ["README.rst"]}
 sweet_logs = [
     "py.typed"
 ]
+
+[tool.mypy]
+warn_return_any = true
+strict = true
+ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 120

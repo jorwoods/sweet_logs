@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 import sweet_logs.config
 
 
-def setup_logging(config: Optional[Dict[str, Any]] = None):
+def setup_logging(config: Optional[Dict[str, Any]] = None) -> None:
     """
     Set up logging configuration. If no configuration is provided, the default
     configuration is used. The default configuration is defined in

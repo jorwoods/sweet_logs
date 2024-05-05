@@ -6,7 +6,7 @@ import datetime as dt
 import logging
 import json
 import sys
-from typing import Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 minor = sys.version_info.minor
 
@@ -60,7 +60,7 @@ class JSONFormatter(logging.Formatter):
         - "message": "message"
     """
 
-    def __init__(self, fmt_keys: Optional[Dict[str, str]] = None, *args, **kwargs):
+    def __init__(self, fmt_keys: Optional[Dict[str, str]] = None, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.fmt_keys = fmt_keys if fmt_keys is not None else {}
 
@@ -69,7 +69,7 @@ class JSONFormatter(logging.Formatter):
         message = self._prepare_log_dict(record)
         return json.dumps(message, default=str)
 
-    def _prepare_log_dict(self, record: logging.LogRecord):
+    def _prepare_log_dict(self, record: logging.LogRecord) -> Dict[str, Union[str, Any]]:
         """Prepare log record as JSON"""
         always_fields = {
             "level": record.levelname,

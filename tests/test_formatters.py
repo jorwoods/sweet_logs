@@ -1,6 +1,7 @@
 import datetime as dt
 import logging
 import json
+from typing import Annotated, Any, Generator, Mapping, Tuple
 
 import pytest
 
@@ -8,14 +9,14 @@ import sweet_logs
 
 
 @pytest.fixture
-def get_date(monkeypatch):
-    def mock_date(*args, **kwargs):
+def get_date(monkeypatch: pytest.MonkeyPatch) -> None:
+    def mock_date(*args: Tuple[Any], **kwargs: Mapping[Any, Any]) -> dt.datetime:
         return dt.datetime(2024, 1, 1, 0, 0, 0, 0, tzinfo=dt.timezone.utc)
 
     monkeypatch.setattr(sweet_logs.formatters, "_date_from_timestamp", mock_date)
 
 
-def test_JSONFormatter_no_fmt_keys(get_date):
+def test_JSONFormatter_no_fmt_keys(get_date: Annotated[str, pytest.fixture]) -> None:
     fmt = sweet_logs.formatters.JSONFormatter()
 
     record = logging.LogRecord(name="test", level=10, pathname="pytest", lineno=10, exc_info=None, msg="test", args=())
