@@ -1,7 +1,7 @@
 [project]
 name = "sweet_logs"
 authors = [
-    {name="Jordan Woods", email="jorwoods@example.com"}
+    {name="Jordan Woods", email="13803242+jorwoods@users.noreply.github.com"}
 ]
 version = "0.1.0"
 license = {text = "GNU General Public License v3"}
