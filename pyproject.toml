@@ -27,6 +27,7 @@ requires-python = ">=3.9"
 dev = [
     "pytest",
     "mypy==1.10.0",
+    "pytest-mock",
 ]
 
 [build-system]
@@ -48,6 +49,10 @@ sweet_logs = [
 warn_return_any = true
 strict = true
 ignore_missing_imports = true
+files = [
+    "src",
+    "tests",
+]
 
 [tool.ruff]
 line-length = 120
