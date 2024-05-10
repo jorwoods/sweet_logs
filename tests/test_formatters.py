@@ -1,13 +1,14 @@
 import datetime as dt
 import logging
 import json
-from typing import Annotated, Any, Generator, Mapping, Tuple
+from typing import Annotated, Any, Mapping, Tuple, no_type_check
 
 import pytest
 
 import sweet_logs
 
 
+@no_type_check
 @pytest.fixture
 def get_date(monkeypatch: pytest.MonkeyPatch) -> None:
     def mock_date(*args: Tuple[Any], **kwargs: Mapping[Any, Any]) -> dt.datetime:
