@@ -49,10 +49,14 @@ sweet_logs = [
 warn_return_any = true
 strict = true
 ignore_missing_imports = true
-files = [
+packages = [
     "src",
     "tests",
 ]
+
+exclude = '''(?x)(
+    ^docs/.*$  # Exclude documentation
+)'''
 
 [tool.ruff]
 line-length = 120
