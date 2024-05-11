@@ -2,7 +2,9 @@ name: Publish to PyPI
 
 on:
   push:
-  pull_request:
+    tags:
+      - 'v*'
+      - 'test*'
 
 jobs:
   publish:
