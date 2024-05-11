@@ -14,7 +14,7 @@ Sweet Logs
 
 
 A collection of logging formatters, filters, and functions. Original inspiration
-came from `mCoding's video (https://youtu.be/9L77QExPmI0)`_ on logging in Python.
+came from `mCoding's video <https://youtu.be/9L77QExPmI0>`_ on logging in Python.
 
 
 * Free software: GNU General Public License v3
