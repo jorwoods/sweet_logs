@@ -7,7 +7,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    environment: release
+    environment: ${{ startsWith(github.ref, 'refs/heads/tags/v') && 'release' || 'release_test' }}
     permissions:
       id-token: write
 
@@ -31,4 +31,4 @@ jobs:
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository-url: https://test.pypi.org/legacy/
+          repository-url: ${{ startsWith(github.ref, 'refs/heads/tags/v') && 'https://pypi.org/legacy/' || 'https://test.pypi.org/legacy/' }}
