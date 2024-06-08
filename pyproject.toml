@@ -3,7 +3,7 @@ name = "sweet_logs"
 authors = [
     {name="Jordan Woods", email="13803242+jorwoods@users.noreply.github.com"}
 ]
-version = "0.1.0"
+version = "0.1.1"
 license = {text = "GNU General Public License v3"}
 
 dynamic = [
