@@ -54,6 +54,10 @@ class JSONFormatter(logging.Formatter):
         A dictionary that maps JSON keys to log record attributes. The keys in
         fmt_keys are the keys output in the JSON. The values are the log record
         attributes.
+
+        If you specify a key that is not in the log record, it will be present
+        in the dictionary output, but the value will be None.
+
         The following keys/values are always considered included:
         - "level": "levelname"
         - "timestamp": "asctime"
@@ -83,7 +87,7 @@ class JSONFormatter(logging.Formatter):
             always_fields["stack_info"] = self.formatStack(record.stack_info)
 
         message = {
-            key: msg_val if (msg_val := always_fields.pop(val, None)) is not None else getattr(record, val)
+            key: msg_val if (msg_val := always_fields.pop(val, None)) is not None else getattr(record, val, None)
             for key, val in self.fmt_keys.items()
         }
         message.update(always_fields)

@@ -28,4 +28,11 @@ base_config: Dict[str, Any] = {
             "stream": "ext://sys.stdout",
         }
     },
+    "loggers": {
+        "root": {
+            "handlers": ["stdout"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
 }
