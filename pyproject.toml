@@ -46,14 +46,12 @@ sweet_logs = [
 ]
 
 [tool.mypy]
+files = "$MYPY_CONFIG_FILE_DIR/src/sweet_logs, $MYPY_CONFIG_FILE_DIR/tests"
 warn_return_any = true
+warn_unreachable = true
 strict = true
 ignore_missing_imports = true
-packages = [
-    "src",
-    "tests",
-]
-
+no_implicit_reexport = true
 exclude = '''(?x)(
     ^docs/.*$  # Exclude documentation
 )'''

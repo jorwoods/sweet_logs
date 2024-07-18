@@ -63,14 +63,17 @@ Ready to contribute? Here's how to set up `sweet_logs` for local development.
 2. Clone your fork locally::
 
 .. code-block:: bash
-    git clone git@github.com:your_name_here/sweet_logs.git
+    git clone git@github.com:jorwoods/sweet_logs.git
 
 3. Install your local copy into a virtualenv.
 
 .. code-block:: bash
-    mkvirtualenv sweet_logs
     cd sweet_logs/
-    python setup.py develop
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -e .[dev]
+    pip install pre-commit
+    pre-commit install
 
 4. Create a branch for local development::
 
@@ -86,7 +89,11 @@ Ready to contribute? Here's how to set up `sweet_logs` for local development.
     ruff sweet_logs tests
     pytest
 
-   To get ruff, just pip install it into your virtualenv.
+ruff and pytest should have been installed when you installed the optional dev
+dependencies, but if not can be installed separately through
+
+.. code-block:: bash
+    pip install ruff pytest
 
 6. Commit your changes and push your branch to GitHub::
 
