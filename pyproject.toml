@@ -47,12 +47,12 @@ sweet_logs = [
 
 [tool.mypy]
 warn_return_any = true
+warn_unreachable = true
 strict = true
 ignore_missing_imports = true
 no_implicit_reexport = true
 packages = [
-    "src",
-    "tests",
+    "sweet_logs",
 ]
 
 exclude = '''(?x)(
