@@ -51,10 +51,6 @@ warn_unreachable = true
 strict = true
 ignore_missing_imports = true
 no_implicit_reexport = true
-packages = [
-    "sweet_logs",
-]
-
 exclude = '''(?x)(
     ^docs/.*$  # Exclude documentation
 )'''
