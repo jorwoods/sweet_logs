@@ -24,7 +24,23 @@ came from `mCoding's video <https://youtu.be/9L77QExPmI0>`_ on logging in Python
 Features
 --------
 
-* TODO
+Utilizing the sweet_logs package can be as simple as importing it and running
+the setup function. This will configure the root logger to us the JSONFormatter
+and log to the console via sys.stdout.
+
+.. code-block:: python
+
+    import sweet_logs
+
+    sweet_logs.setup_logging()
+
+    logger = logging.getLogger(__name__)
+    logger.info('This is an info message')
+
+The ``setup_logging`` function can take a few arguments to customize the
+logging configuration. What is passed to the config option is passed to the
+`logging.config.dictConfig <https://docs.python.org/3/library/logging.config.html#logging.config.dictConfig>`_
+function.
 
 Credits
 -------

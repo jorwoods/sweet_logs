@@ -49,6 +49,7 @@ sweet_logs = [
 warn_return_any = true
 strict = true
 ignore_missing_imports = true
+no_implicit_reexport = true
 packages = [
     "src",
     "tests",
